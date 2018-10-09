@@ -1,5 +1,3 @@
-import React, { Component } from 'react';
-
 const styles = {
   fontSize: '1.0em',
   width: '90%',

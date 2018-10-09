@@ -1,7 +1,3 @@
-import React, { Component } from 'react';
-import Gif from './gif';
-import Search from './search'
-
 const GIPHY_PUB_KEY = 'qYJUoExqhocza5OQXzJpzFgXT2AxuaGW';
 const GIPHY_API_URL = 'https://api.giphy.com';
 const url = ~`${GIPHY_API_URL}/v1/gifs/random?api_key=${GIPHY_PUB_KEY}&tag=`; 

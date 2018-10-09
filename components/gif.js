@@ -1,5 +1,3 @@
-import React, { Component } from 'react';
-
 const GIPHY_LOADING_URL = 'http://www.ifmo.ru/images/loader.gif';
 const styles = {
   minHeight: '310px',
