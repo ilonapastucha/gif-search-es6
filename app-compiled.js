@@ -1,9 +1,5 @@
 'use strict';
 
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -14,7 +10,7 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 
 var GIPHY_PUB_KEY = 'qYJUoExqhocza5OQXzJpzFgXT2AxuaGW';
 var GIPHY_API_URL = 'https://api.giphy.com';
-var url = ~(GIPHY_API_URL + '/v1/gifs/random?api_key=' + GIPHY_PUB_KEY + '&tag=');
+var url = GIPHY_API_URL + '/v1/gifs/random?api_key=' + GIPHY_PUB_KEY + '&tag=';
 
 var style = {
   margin: '0 auto',
@@ -22,35 +18,44 @@ var style = {
   width: '60%'
 };
 
-var App = function (_Component) {
-  _inherits(App, _Component);
+var App = function (_React$Component) {
+  _inherits(App, _React$Component);
 
   function App(props) {
     _classCallCheck(this, App);
 
     var _this = _possibleConstructorReturn(this, (App.__proto__ || Object.getPrototypeOf(App)).call(this, props));
 
-    state = {
+    _this.handleChange = _this.handleChange.bind(_this);
+    _this.handleKeyUp = _this.handleKeyUp.bind(_this);
+    _this.state = {
       loading: false,
       searchingText: '',
       gif: {}
     };
+    return _this;
+  }
 
-    handleSearch = function handleSearch(searchingText) {
-      _this.setState({
+  _createClass(App, [{
+    key: 'handleSearch',
+    value: function handleSearch(searchingText) {
+      var _this2 = this;
+
+      this.setState({
         loading: true
       });
 
-      _this.getGif(searchingText, function (gif) {
-        return _this.setState({
+      this.getGif(searchingText, function (gif) {
+        return _this2.setState({
           loading: false,
           gif: gif,
           searchingText: searchingText
         });
       });
-    };
-
-    getGif = function getGif(searchingText, callback) {
+    }
+  }, {
+    key: 'getGif',
+    value: function getGif(searchingText, callback) {
       fetch(url + searchingText).then(function (response) {
         return response.json();
       }).then(function (_ref) {
@@ -61,11 +66,8 @@ var App = function (_Component) {
           sourceUrl: data.url
         });
       });
-    };
-    return _this;
-  }
-
-  _createClass(App, [{
+    }
+  }, {
     key: 'render',
     value: function render() {
       return React.createElement(
@@ -100,6 +102,4 @@ var App = function (_Component) {
   }]);
 
   return App;
-}(Component);
-
-exports.default = App;
+}(React.Component);

@@ -4,7 +4,7 @@ const styles = {
   margin: '0.5em'
 };
 
-class Gif extends Component {
+class Gif extends React.Component {
   get url () {
     return this.props.sourceUrl || GIPHY_LOADING_URL
   }

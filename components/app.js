@@ -1,6 +1,6 @@
 const GIPHY_PUB_KEY = 'qYJUoExqhocza5OQXzJpzFgXT2AxuaGW';
 const GIPHY_API_URL = 'https://api.giphy.com';
-const url = ~`${GIPHY_API_URL}/v1/gifs/random?api_key=${GIPHY_PUB_KEY}&tag=`; 
+const url = `${GIPHY_API_URL}/v1/gifs/random?api_key=${GIPHY_PUB_KEY}&tag=`; 
 
 const style = {
   margin: '0 auto',
@@ -8,39 +8,41 @@ const style = {
   width: '60%'
 };
 
-class App extends Component {
+class App extends React.Component {
   constructor(props) {
     super(props);
-    state = {
+    this.handleChange = this.handleChange.bind(this);
+    this.handleKeyUp = this.handleKeyUp.bind(this);
+    this.state = {
       loading: false,
       searchingText: '',
       gif: {}
     };
-
-    handleSearch = (searchingText) => {
-      this.setState({
-        loading: true
-      });
-      
-      this.getGif(searchingText, gif => this.setState({
-        loading: false,
-        gif,
-        searchingText
-      }))
-    };
-
-    getGif = (searchingText, callback) => {
-      fetch (url + searchingText)
-        .then(response => response.json())
-        .then(( {data}) => {
-          callback({
-          url: data.fixed_width_downsampled_url,
-          sourceUrl: data.url
-        })
-      })
-    };
   }
 
+  handleSearch (searchingText) {
+    this.setState({
+      loading: true
+    });
+    
+    this.getGif(searchingText, gif => this.setState({
+      loading: false,
+      gif,
+      searchingText
+    }))
+  };
+
+  getGif (searchingText, callback) {
+    fetch (url + searchingText)
+      .then(response => response.json())
+      .then(( {data}) => {
+        callback({
+        url: data.fixed_width_downsampled_url,
+        sourceUrl: data.url
+      })
+    })
+  };
+  
   render() {
     return (
       <div style={style}>

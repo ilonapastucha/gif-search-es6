@@ -4,28 +4,31 @@ const styles = {
   maxWidth: '300px'
 };
 
-class Search extends Component {
+class Search extends React.Component {
   constructor(props) {
     super(props);
-    state = {
+    this.handleChange = this.handleChange.bind(this);
+    this.handleKeyUp = this.handleKeyUp.bind(this);
+    this.state = {
       searchingText:''
     };
-
-    handleChange = event => {
-      this.setState ({
-      searchingText: event.target.value
-      })
-      if (this.state.searchingText.length > 2) {
-        this.props.onSearch(this.state.searchingText)
-      }
-    };
-      
-    handleKeyUp = event => {
-      if (event.keyCode === 13) {
-        this.props.onSearch(this.state.searchingText)
-      }
-    };
   }
+
+  handleChange(event) {
+    this.setState ({
+    searchingText: event.target.value
+    })
+    if (this.state.searchingText.length > 2) {
+      this.props.onSearch(this.state.searchingText)
+    }
+  };
+      
+  handleKeyUp(event) {
+    if (event.keyCode === 13) {
+      this.props.onSearch(this.state.searchingText)
+    }
+  };
+  
   
   render() {
     return (
