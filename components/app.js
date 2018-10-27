@@ -11,6 +11,7 @@ const style = {
 class App extends React.Component {
   constructor(props) {
     super(props);
+    this.handleSearch = this.handleSearch.bind(this)
     this.state = {
       loading: false,
       searchingText: '',
@@ -27,7 +28,7 @@ class App extends React.Component {
       loading: false,
       gif,
       searchingText
-    }.bind(this)))
+    }))
   };
 
   getGif (searchingText, callback) {
