@@ -27,7 +27,7 @@ class App extends React.Component {
       loading: false,
       gif,
       searchingText
-    }))
+    }.bind(this)))
   };
 
   getGif (searchingText, callback) {

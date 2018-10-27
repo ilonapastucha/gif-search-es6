@@ -48,7 +48,7 @@ var App = function (_React$Component) {
           loading: false,
           gif: gif,
           searchingText: searchingText
-        });
+        }.bind(_this2));
       });
     }
   }, {
