@@ -11,8 +11,6 @@ const style = {
 class App extends React.Component {
   constructor(props) {
     super(props);
-    this.handleChange = this.handleChange.bind(this);
-    this.handleKeyUp = this.handleKeyUp.bind(this);
     this.state = {
       loading: false,
       searchingText: '',
